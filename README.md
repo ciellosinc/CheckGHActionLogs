@@ -58,3 +58,10 @@ This action is particularly useful for automating the monitoring of workflows an
 
    ```json
    ["Build", "Test", "Deploy"]
+
+## Ciellos fork (ciellosinc) changes
+Forked from [eh-ciellos](https://github.com/eh-ciellos) (Emanuele Hamzaraj) and fixed for use in AL-Go repositories:
+- All inputs are passed to the scripts via environment variables (no quoting issues, no script injection, secrets not on the command line).
+- Use tag `v1` (or `v1.0.0`) in workflows: `uses: ciellosinc/<repo>@v1`.
+- New `runId` input: check the run that triggered a `workflow_run` workflow (no PAT and no `WORKFLOWS` variable needed; `github.token` with `actions: read` is enough).
+- Workflow names are compared trimmed (AL-Go names start with a space); also non-AL `[error]` lines are reported; temp files work on Linux and Windows runners; new `found` output.
